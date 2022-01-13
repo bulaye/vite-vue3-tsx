@@ -5,13 +5,15 @@ export default defineComponent({
   props: {
     msg: String
   },
-
-  setup(props) {
+  emits: ['click'],
+  setup(props, ctx) {
     const count = ref(0)
+    const { slots, emit } = ctx;
     const { msg } = props;
 
     const inc = () => {
       count.value++;
+      emit('click', count.value)
     };
 
     return () => (
